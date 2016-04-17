@@ -1,6 +1,7 @@
-module GaloisField.Operations (multiply, divide) where
+module GaloisField.Operations (multiply, divide, polyScale, polyAdd) where
 
 import Array
+import Bitwise exposing (xor)
 
 import GaloisField
 
@@ -46,3 +47,27 @@ divide galoisField x y =
           Array.get (logx + ((Array.length galoisField.logarithms) - 1) - logy) galoisField.exponents
         )
       ) logx logy
+
+
+polyScale : GaloisField.GaloisField -> List Int -> Int -> List (Maybe Int)
+polyScale galoisField polynome x =
+  List.map ( \y ->
+    multiply galoisField y x
+  ) polynome
+
+polyAdd : GaloisField.GaloisField -> List Int -> List Int -> List Int
+polyAdd galoisField polynome1 polynome2 =
+  let
+    polynome1Length = List.length polynome1
+    polynome2Length = List.length polynome2
+    maximumLength = List.maximum [polynome1Length, polynome2Length]
+    polynome1Array = Array.fromList polynome1
+    polynome2Array = Array.fromList polynome2
+  in
+    let
+      intermediate = Array.fromList(
+        List.map ( \index ->
+          Maybe.withDefault 0 (Array.get index polynome1Array)
+        ) [0..(polynome1Length - 1)])
+    in
+      [1]

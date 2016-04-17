@@ -14,12 +14,11 @@ Nevertheless, you're welcome to join me in my endeavour.
   * initalisation
   * multiplication
   * division
-
+  * polyScale
 
 ## To do
 
 * Functions on the Galois Field:
-  * polyScale
   * polyAdd
   * polyMul
   * polyEval
