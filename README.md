@@ -10,13 +10,15 @@ Nevertheless, you're welcome to join me in my endeavour.
 
 ## Implemented
 
-* Initialising a Galois Field
+* Galois Field
+  * initalisation
+  * multiplication
+  * division
+
 
 ## To do
 
 * Functions on the Galois Field:
-  * multiplication
-  * division
   * polyScale
   * polyAdd
   * polyMul
