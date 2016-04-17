@@ -1,0 +1,15 @@
+{
+    "version": "1.0.0",
+    "summary": "An attempt at implementing Reed-Solomon error correction in Elm.",
+    "repository": "https://github.com/nerdinand/elm-reed-solomon.git",
+    "license": "MIT",
+    "source-directories": [
+        "src/"
+    ],
+    "exposed-modules": [],
+    "dependencies": {
+        "circuithub/elm-list-extra": "3.10.0 <= v < 4.0.0",
+        "elm-lang/core": "3.0.0 <= v < 4.0.0"
+    },
+    "elm-version": "0.16.0 <= v < 0.17.0"
+}
