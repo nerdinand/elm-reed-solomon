@@ -1,4 +1,4 @@
-module GaloisField.Operations (multiply, divide, polyScale, polyAdd) where
+module GaloisField.Operations exposing (multiply, divide, polyScale, polyAdd)
 
 import Array
 import Bitwise exposing (xor)
