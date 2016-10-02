@@ -1,4 +1,4 @@
-port module ReedSolomon exposing (main)
+module ReedSolomon.Main exposing (main)
 
 import Json.Decode
 import Html
@@ -7,6 +7,7 @@ import Html.App as App
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import String
+import ReedSolomon.Ports
 
 
 main =
@@ -48,12 +49,6 @@ type Msg
     | Decoded String
 
 
-port encode : String -> Cmd msg
-
-
-port decode : List Int -> Cmd msg
-
-
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
@@ -61,7 +56,7 @@ update msg model =
             ( { model | encodeString = newString }, Cmd.none )
 
         Encode ->
-            ( model, encode model.encodeString )
+            ( model, ReedSolomon.Ports.encode ( 10, model.encodeString ) )
 
         Encoded encoded ->
             ( { model | encoded = encoded }, Cmd.none )
@@ -74,7 +69,7 @@ update msg model =
                 ( { model | decodeList = intList }, Cmd.none )
 
         Decode ->
-            ( model, decode model.decodeList )
+            ( model, ReedSolomon.Ports.decode ( 10, model.decodeList ) )
 
         Decoded decoded ->
             ( { model | decoded = decoded }, Cmd.none )
@@ -84,17 +79,11 @@ update msg model =
 -- SUBSCRIPTIONS
 
 
-port encoded : (List Int -> msg) -> Sub msg
-
-
-port decoded : (String -> msg) -> Sub msg
-
-
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ encoded Encoded
-        , decoded Decoded
+        [ ReedSolomon.Ports.encoded Encoded
+        , ReedSolomon.Ports.decoded Decoded
         ]
 
 

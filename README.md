@@ -5,4 +5,10 @@ This is a prerequisite for my other project, [a QR code library written in Elm](
 
 ## Usage
 
-TODO
+There's a little demo app bundled with this project. To compile, run:
+
+```
+elm-make src/ReedSolomon/**/*.elm --output=lib/ReedSolomon.js
+```
+
+Then open `index.html` with your browser.

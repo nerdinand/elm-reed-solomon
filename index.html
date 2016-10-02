@@ -2,28 +2,30 @@
 <head>
 </head>
 <body>
-  <script src="ReedSolomon.js"></script>
-  <script src="erc.js"></script>
+  <script src="lib/ReedSolomon.js"></script>
+  <script src="lib/erc.js"></script>
   <script>
-      var app = Elm.ReedSolomon.fullscreen();
+      var app = Elm.ReedSolomon.Main.fullscreen();
 
-      app.ports.encode.subscribe(function(stringToEncode) {
-          var encoded = encode(stringToEncode);
+      app.ports.encode.subscribe(function(args) {
+          var [codeWordLength, stringToEncode] = args;
+          var encoded = encode(codeWordLength, stringToEncode);
           app.ports.encoded.send(encoded);
       });
 
-      app.ports.decode.subscribe(function(stringToDecode) {
-          var decoded = decode(stringToDecode);
+      app.ports.decode.subscribe(function(args) {
+          var [codeWordLength, stringToDecode] = args;
+          var decoded = decode(codeWordLength, stringToDecode);
           app.ports.decoded.send(decoded);
       });
 
-      function encode(stringToEncode) {
-        var rs = new ReedSolomon(10);
+      function encode(codeWordLength, stringToEncode) {
+        var rs = new ReedSolomon(codeWordLength);
         return rs.encode(stringToEncode);
       }
 
-      function decode(stringToDecode) {
-        var rs = new ReedSolomon(10);
+      function decode(codeWordLength, stringToDecode) {
+        var rs = new ReedSolomon(codeWordLength);
         return rs.decode(stringToDecode);
       }
   </script>
