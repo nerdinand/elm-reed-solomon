@@ -100,10 +100,18 @@ all =
       )
     ]
     , suite "polyAdd" [
-      test "[4, 145, 333, 153, -27] + [-23, 42, 137, 200, 43]" (
+      --test "[4, 145, 333, 153, -27] + [-23, 42, 137, 200, 43]" (
+      --  let galoisField = GaloisField.initialize in
+      --    assertEqual ([ -19, 187, 452, 81, -50 ]) (polyAdd galoisField [4, 145, 333, 153, -27] [-23, 42, 137, 200, 43])
+      --)
+      test "[11, 12, 13] + [-23, 42, 137, 200, 43]" (
         let galoisField = GaloisField.initialize in
-          assertEqual ([ -19, 187, 452, 81, -50 ]) (polyAdd galoisField [4, 145, 333, 153, -27] [-23, 42, 137, 200, 43])
+          assertEqual ([ -23, 42, 130, 196, 38 ]) (polyAdd galoisField [11, 12, 13] [-23, 42, 137, 200, 43])
       )
+      --, test "[23, 42, 137, 200, 27] + [0, 0, 0, 0, 0]" (
+      --  let galoisField = GaloisField.initialize in
+      --    assertEqual ([Just 0, Just 0, Just 0, Just 0, Just 0]) (polyScale galoisField [23, 42, 137, 200, 27] 0)
+      --)
       --, test "[23, 42, 137, 200, 27] + [0, 0, 0, 0, 0]" (
       --  let galoisField = GaloisField.initialize in
       --    assertEqual ([Just 0, Just 0, Just 0, Just 0, Just 0]) (polyScale galoisField [23, 42, 137, 200, 27] 0)

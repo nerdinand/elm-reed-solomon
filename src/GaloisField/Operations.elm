@@ -55,19 +55,20 @@ polyScale galoisField polynome x =
     multiply galoisField y x
   ) polynome
 
+
 polyAdd : GaloisField.GaloisField -> List Int -> List Int -> List Int
 polyAdd galoisField polynome1 polynome2 =
   let
     polynome1Length = List.length polynome1
     polynome2Length = List.length polynome2
-    maximumLength = List.maximum [polynome1Length, polynome2Length]
+    maximumLength = Maybe.withDefault 0 (List.maximum [polynome1Length, polynome2Length])
     polynome1Array = Array.fromList polynome1
     polynome2Array = Array.fromList polynome2
   in
     let
       intermediate = Array.fromList(
         List.map ( \index ->
-          Maybe.withDefault 0 (Array.get index polynome1Array)
+          Maybe.withDefault 0 (Array.get index intermediate)
         ) [0..(polynome1Length - 1)])
     in
-      [1]
+      Array.toList intermediate
