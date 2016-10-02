@@ -1,14 +1,13 @@
 {
     "version": "1.0.0",
-    "summary": "An attempt at implementing Reed-Solomon error correction in Elm.",
+    "summary": "A wrapper around erc-js, a Reed-Solomon Erasure Coding Algorithm library.",
     "repository": "https://github.com/nerdinand/elm-reed-solomon.git",
-    "license": "MIT",
+    "license": "GPL-3.0+",
     "source-directories": [
         "src/"
     ],
     "exposed-modules": [],
     "dependencies": {
-        "elm-community/elm-list-extra": "1.0.0 <= v < 2.0.0",
         "elm-lang/core": "4.0.0 <= v < 5.0.0",
         "elm-lang/html": "1.0.0 <= v < 2.0.0"
     },

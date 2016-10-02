@@ -1,0 +1,31 @@
+<html>
+<head>
+</head>
+<body>
+  <script src="ReedSolomon.js"></script>
+  <script src="erc.js"></script>
+  <script>
+      var app = Elm.ReedSolomon.fullscreen();
+
+      app.ports.encode.subscribe(function(stringToEncode) {
+          var encoded = encode(stringToEncode);
+          app.ports.encoded.send(encoded);
+      });
+
+      app.ports.decode.subscribe(function(stringToDecode) {
+          var decoded = decode(stringToDecode);
+          app.ports.decoded.send(decoded);
+      });
+
+      function encode(stringToEncode) {
+        var rs = new ReedSolomon(10);
+        return rs.encode(stringToEncode);
+      }
+
+      function decode(stringToDecode) {
+        var rs = new ReedSolomon(10);
+        return rs.decode(stringToDecode);
+      }
+  </script>
+</body>
+</html>
